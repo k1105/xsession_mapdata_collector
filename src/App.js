@@ -21,11 +21,28 @@ const styles = {
     width: "100%",
     height: "87vh",
   },
+  info: {
+    display: "table",
+    position: "relative",
+    margin: "0px auto",
+    wordWrap: "anywhere",
+    whiteSpace: "pre-wrap",
+    padding: "10px",
+    border: "none",
+    borderRadius: "3px",
+    fontSize: "12px",
+    textAlign: "center",
+    color: "#222",
+    background: "#fff",
+  },
 };
 
 export const App = () => {
   const map = useRef();
   const mapContainer = useRef();
+  const hoge = () => {
+    console.log("hoge");
+  };
 
   useEffect(() => {
     /* ComponentDidmount */
@@ -42,6 +59,15 @@ export const App = () => {
 
       map.current.on("load", function () {
         map.current.addControl(geolocate);
+        map.current.on("mousemove", (e) => {
+          document.getElementById("info").innerHTML =
+            // `e.point` is the x, y coordinates of the `mousemove` event
+            // relative to the top-left corner of the map.
+            JSON.stringify(e.point) +
+            "<br />" +
+            // `e.lngLat` is the longitude, latitude geographical position of the event.
+            JSON.stringify(e.lngLat.wrap());
+        });
       });
     });
     return () => {
@@ -52,5 +78,11 @@ export const App = () => {
       }
     };
   }, []);
-  return <div style={styles.root} ref={mapContainer} />;
+
+  return (
+    <div>
+      <div style={styles.root} ref={mapContainer} onClick={hoge} />
+      <pre id="info"></pre>
+    </div>
+  );
 };
