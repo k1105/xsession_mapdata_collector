@@ -2,7 +2,9 @@ import { useEffect, useRef } from "react";
 import "./App.css";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
+import AddPointLayer from "./lib/AddPointLayer";
+import AddTrackLayer from "./lib/AddTrackLayer";
+import SetDataOnLayer from "./lib/SetDataOnLayer";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 // mapboxgl.workerClass =
 //  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -40,8 +42,13 @@ const styles = {
 export const App = () => {
   const map = useRef();
   const mapContainer = useRef();
+  const currentPos = useRef();
+  const posList = useRef([]);
   const hoge = () => {
-    console.log("hoge");
+    posList.current.push([currentPos.current.lng, currentPos.current.lat]);
+    SetDataOnLayer(map.current, "points", posList.current);
+    SetDataOnLayer(map.current, "track", posList.current);
+    console.log(posList.current);
   };
 
   useEffect(() => {
@@ -59,7 +66,10 @@ export const App = () => {
 
       map.current.on("load", function () {
         map.current.addControl(geolocate);
+        AddPointLayer(map.current, "points");
+        AddTrackLayer(map.current, "track");
         map.current.on("mousemove", (e) => {
+          currentPos.current = e.lngLat;
           document.getElementById("info").innerHTML =
             // `e.point` is the x, y coordinates of the `mousemove` event
             // relative to the top-left corner of the map.
