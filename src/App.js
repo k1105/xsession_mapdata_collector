@@ -1,10 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import AddPointLayer from "./lib/AddPointLayer";
 import AddTrackLayer from "./lib/AddTrackLayer";
 import SetDataOnLayer from "./lib/SetDataOnLayer";
+import EncodeTrackForMapMatching from "./lib/EncodeTrackForMapMatching";
+import RequestAxios from "./lib/RequestAxios";
+import data from "./matchedData.json";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 // mapboxgl.workerClass =
 //  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -43,16 +46,24 @@ export const App = () => {
   const map = useRef();
   const mapContainer = useRef();
   const currentPos = useRef();
-  const posList = useRef([]);
-  const hoge = () => {
-    posList.current.push([currentPos.current.lng, currentPos.current.lat]);
-    SetDataOnLayer(map.current, "points", posList.current);
-    SetDataOnLayer(map.current, "track", posList.current);
-    console.log(posList.current);
+  const [posList, setPosList] = useState([]);
+
+  const getMatchedTrack = () => {
+    const url =
+      "https://api.mapbox.com/matching/v5/mapbox/walking/" +
+      EncodeTrackForMapMatching(posList) +
+      "?geometries=geojson&access_token=" +
+      mapboxgl.accessToken;
+    let response = RequestAxios(url);
+    response.then((r) => {
+      console.log(r.data.matchings[0].geometry.coordinates);
+      setPosList(r.data.matchings[0].geometry.coordinates);
+    });
   };
 
   useEffect(() => {
     /* ComponentDidmount */
+
     navigator.geolocation.getCurrentPosition((position) => {
       const c_lng = position.coords.longitude;
       const c_lat = position.coords.latitude;
@@ -89,9 +100,24 @@ export const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    SetDataOnLayer(map.current, "points", posList);
+    SetDataOnLayer(map.current, "track", posList);
+  }, [posList]);
+
   return (
     <div>
-      <div style={styles.root} ref={mapContainer} onClick={hoge} />
+      <div
+        style={styles.root}
+        ref={mapContainer}
+        onClick={() => {
+          setPosList([
+            ...posList,
+            [currentPos.current.lng, currentPos.current.lat],
+          ]);
+        }}
+      />
+      <button onClick={getMatchedTrack}>MapMatching</button>
       <pre id="info"></pre>
     </div>
   );

@@ -1,0 +1,115 @@
+{
+  "matchings": [
+    {
+      "confidence": 0.928078,
+      "weight_name": "auto",
+      "weight": 1038.147,
+      "duration": 823.645,
+      "distance": 5271.79,
+      "legs": [
+        {
+          "via_waypoints": [],
+          "admins": [{ "iso_3166_1_alpha3": "JPN", "iso_3166_1": "JP" }],
+          "weight": 365.802,
+          "duration": 340.378,
+          "steps": [],
+          "distance": 2172.543,
+          "summary": "山手通り, 新目白通り"
+        },
+        {
+          "via_waypoints": [],
+          "admins": [{ "iso_3166_1_alpha3": "JPN", "iso_3166_1": "JP" }],
+          "weight": 279.86,
+          "duration": 228.97,
+          "steps": [],
+          "distance": 1506.001,
+          "summary": "新目白通り"
+        },
+        {
+          "via_waypoints": [],
+          "admins": [{ "iso_3166_1_alpha3": "JPN", "iso_3166_1": "JP" }],
+          "weight": 143.804,
+          "duration": 84.261,
+          "steps": [],
+          "distance": 459.498,
+          "summary": "新目白通り, 目白通り"
+        },
+        {
+          "via_waypoints": [],
+          "admins": [{ "iso_3166_1_alpha3": "JPN", "iso_3166_1": "JP" }],
+          "weight": 248.682,
+          "duration": 170.037,
+          "steps": [],
+          "distance": 1133.748,
+          "summary": "目白通り"
+        }
+      ],
+      "geometry": {
+        "coordinates": [
+          [139.688794, 35.718648],
+          [139.689258, 35.71915],
+          [139.691574, 35.717543],
+          [139.693715, 35.716958],
+          [139.696442, 35.716672],
+          [139.704053, 35.716305],
+          [139.711284, 35.714455],
+          [139.714529, 35.712976],
+          [139.726819, 35.709777],
+          [139.73162, 35.710219],
+          [139.731592, 35.710085],
+          [139.731531, 35.71008],
+          [139.732219, 35.710169],
+          [139.734968, 35.709144],
+          [139.742585, 35.70802],
+          [139.743099, 35.707724],
+          [139.74327, 35.707761]
+        ],
+        "type": "LineString"
+      }
+    }
+  ],
+  "tracepoints": [
+    {
+      "matchings_index": 0,
+      "waypoint_index": 0,
+      "alternatives_count": 0,
+      "distance": 7.701,
+      "name": "",
+      "location": [139.688794, 35.718648]
+    },
+    {
+      "matchings_index": 0,
+      "waypoint_index": 1,
+      "alternatives_count": 0,
+      "distance": 13.63,
+      "name": "",
+      "location": [139.711284, 35.714455]
+    },
+    {
+      "matchings_index": 0,
+      "waypoint_index": 2,
+      "alternatives_count": 0,
+      "distance": 10.168,
+      "name": "",
+      "location": [139.726819, 35.709777]
+    },
+    {
+      "matchings_index": 0,
+      "waypoint_index": 3,
+      "alternatives_count": 0,
+      "distance": 13.358,
+      "name": "",
+      "location": [139.731592, 35.710085]
+    },
+    {
+      "matchings_index": 0,
+      "waypoint_index": 4,
+      "alternatives_count": 0,
+      "distance": 3.026,
+      "name": "",
+      "location": [139.74327, 35.707761]
+    }
+  ],
+  "code": "Ok",
+  "uuid": "WFWUzff29q_YMJW3vwMN2v6YQfRc0XClDJ3--XipFMNv0wWnHMGBOA=="
+}
