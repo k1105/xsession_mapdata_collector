@@ -7,7 +7,6 @@ import AddTrackLayer from "./lib/AddTrackLayer";
 import SetDataOnLayer from "./lib/SetDataOnLayer";
 import EncodeTrackForMapMatching from "./lib/EncodeTrackForMapMatching";
 import RequestAxios from "./lib/RequestAxios";
-import data from "./matchedData.json";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 // mapboxgl.workerClass =
 //  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
